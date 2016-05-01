@@ -13,7 +13,6 @@ for(var i = 0; i < productPrices.responseJSON.products.length; i++){
 
   var uberElement = document.createElement("div");
   uberElement.className = "uber";
-  //document.body.appendChild(uberElement);
 
   var displayElement = document.createElement("header");
   var h2 = document.createElement("h2");
