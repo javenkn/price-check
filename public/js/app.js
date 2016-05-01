@@ -6,15 +6,49 @@
  * @return {[Products]]} The Uber products available at the queried location
  */
 
-getProductsByLocation(21.3069, -157.8583);
+var productPrices = getProductsByLocation(21.3069, -157.8583);
+
+for(var i = 0; i < productPrices.responseJSON.products.length; i++){
+  console.log(productPrices.responseJSON.products[i]);
+
+  var uberElement = document.createElement("div");
+  uberElement.className = "uber";
+  //document.body.appendChild(uberElement);
+
+  var displayElement = document.createElement("header");
+  var h2 = document.createElement("h2");
+  h2.innerHTML = "Display: " + productPrices.responseJSON.products[i].display_name;
+  displayElement.appendChild(h2);
+  uberElement.appendChild(displayElement);
+
+  var descriptionElement = document.createElement("paragraph");
+  var p = document.createElement("p");
+  p.innerHTML = "Description: " + productPrices.responseJSON.products[i].description;
+  descriptionElement.appendChild(p);
+  uberElement.appendChild(descriptionElement);
+
+  var capacityElement = document.createElement("header");
+  var h4 = document.createElement("h4");
+  h4.innerHTML = "Capacity: " + productPrices.responseJSON.products[i].capacity;
+  capacityElement.appendChild(h4);
+  uberElement.appendChild(capacityElement);
+
+  var imageElement = document.createElement("IMG");
+  imageElement.src = productPrices.responseJSON.products[i].image;
+  uberElement.appendChild(imageElement);
+
+  document.body.appendChild(uberElement);
+}
 
 function getProductsByLocation (lat, lng) {
   var location = {
-    /* location object */
+    latitude: lat,
+    longitude: lng
   };
   var products = getProducts(location);
   return products;
 }
+
 
 /**
  * Gets the products from a certain location.
